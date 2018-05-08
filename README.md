@@ -65,7 +65,7 @@ public class YourActivity extends Activity {
   RxBus.getDefault().postSticky("without tag");
 
   // 发送带 tag 为 "my tag" 的 String 类型的粘性事件
-  RxBus.getDefault().post("with tag", "my tag");
+  RxBus.getDefault().postSticky("with tag", "my tag");
   ```
 
 
