@@ -10,15 +10,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="304cf37b-acac-4dcb-a22a-28e5705f9ab2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/RxBusActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/RxBusActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/StickyTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/StickyTestActivity.java" />
-      <change beforePath="$PROJECT_DIR$/art/logo.png" afterPath="$PROJECT_DIR$/art/logo.png" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/rxbus/build.gradle" afterPath="$PROJECT_DIR$/rxbus/build.gradle" />
-      <change beforePath="$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/RxBus.java" afterPath="$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/RxBus.java" />
-      <change beforePath="$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/Utils.java" afterPath="$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/Utils.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/LICENSE" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/proguard-rules.pro" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/Config.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/RxBusActivity.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/StickyTestActivity.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sticky_test.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/art/logo.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/bintrayUpload.gradle" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/gradle.properties" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/gradlew" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/gradlew.bat" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/.gitignore" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/build.gradle" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/proguard-rules.pro" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/project.properties" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/src/main/AndroidManifest.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/CacheUtils.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/RxBus.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/TagMessage.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/Utils.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/settings.gradle" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -72,11 +111,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RxBusActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RxBusActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/RxBusActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-418">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#769#957#0" expanded="true" />
@@ -84,16 +123,6 @@
                 <element signature="e#1014#1199#0" expanded="true" />
                 <element signature="e#1198#1199#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -125,7 +154,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-720">
-              <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -3410,7 +3439,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/settings.gradle" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/rxbus/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
@@ -3428,6 +3456,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/StickyTestActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/RxBusActivity.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -3971,13 +4000,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/rxbus-1.0.0.aar/c0189f195d7e4ffcfb1e460f1b5292b2/jars/classes.jar!/com/blankj/rxbus/BuildConfig.class" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.9/890fc9ef77d78ac270f322b024c0e660a8f57ea0/rxjava-2.1.9-sources.jar!/io/reactivex/schedulers/Schedulers.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -4192,20 +4214,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/RxBusActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#769#957#0" expanded="true" />
-            <element signature="e#956#957#0" expanded="true" />
-            <element signature="e#1014#1199#0" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rxbus/src/main/java/com/blankj/rxbus/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-274">
@@ -4241,16 +4249,38 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-720">
-          <caret line="15" column="8" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="29" column="21" lean-forward="false" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+        <state relative-caret-position="392">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blankj/rxbus/demo/RxBusActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-418">
+          <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#769#957#0" expanded="true" />
+            <element signature="e#956#957#0" expanded="true" />
+            <element signature="e#1014#1199#0" expanded="true" />
+            <element signature="e#1198#1199#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
