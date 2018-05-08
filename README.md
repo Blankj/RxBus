@@ -54,7 +54,8 @@ implementation "com.blankj:rxbus:1.0"
 
   // 发送带 tag 为 "my tag" 的 String 类型事件
   RxBus.getDefault().post("with tag", "my tag");
-    ```
+  ```
+
 
 ### 粘性事件（也就是先发送事件，在之后注册的时候便会收到之前发送的事件）
 1. 发送事件
