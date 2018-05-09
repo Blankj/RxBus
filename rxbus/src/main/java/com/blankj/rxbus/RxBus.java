@@ -149,48 +149,41 @@ public final class RxBus {
                 if (scheduler != null) {
                     stickyFlowable.observeOn(scheduler);
                 }
-                Disposable stickyDisposable = stickyFlowable.subscribe(onNext, mOnError);
-
+                Disposable stickyDisposable = FlowableUtils.subscribe(stickyFlowable, onNext, mOnError);
                 CacheUtils.getInstance().addDisposable(subscriber, stickyDisposable);
             } else {
                 Utils.logW("sticky event is empty.");
             }
         }
-        Disposable disposable = toFlowable(eventType, tag, scheduler)
-                .subscribe(onNext, mOnError);
+        Disposable disposable = FlowableUtils.subscribe(toFlowable(eventType, tag, scheduler), onNext, mOnError);
         CacheUtils.getInstance().addDisposable(subscriber, disposable);
-    }
-
-    public void unregister(final Object subscriber) {
-        CacheUtils.getInstance().removeDisposables(subscriber);
     }
 
     private <T> Flowable<T> toFlowable(final Class<T> eventType,
                                        final String tag,
                                        final Scheduler scheduler) {
-        Flowable<T> flowable = toFlowable(eventType, tag);
+        Flowable<T> flowable = mBus.ofType(TagMessage.class)
+                .filter(new Predicate<TagMessage>() {
+                    @Override
+                    public boolean test(TagMessage tagMessage) {
+                        return tagMessage.isSameType(eventType, tag);
+                    }
+                })
+                .map(new Function<TagMessage, Object>() {
+                    @Override
+                    public Object apply(TagMessage tagMessage) {
+                        return tagMessage.event;
+                    }
+                })
+                .cast(eventType);
         if (scheduler != null) {
             return flowable.observeOn(scheduler);
         }
         return flowable;
     }
 
-    private <T> Flowable<T> toFlowable(final Class<T> eventType,
-                                       final String tag) {
-        return mBus.ofType(TagMessage.class)
-                .filter(new Predicate<TagMessage>() {
-                    @Override
-                    public boolean test(TagMessage tagMessage) throws Exception {
-                        return tagMessage.isSameType(eventType, tag);
-                    }
-                })
-                .map(new Function<TagMessage, Object>() {
-                    @Override
-                    public Object apply(TagMessage tagMessage) throws Exception {
-                        return tagMessage.event;
-                    }
-                })
-                .cast(eventType);
+    public void unregister(final Object subscriber) {
+        CacheUtils.getInstance().removeDisposables(subscriber);
     }
 
     private static class Holder {

@@ -30,6 +30,7 @@ public class RxBusActivity extends AppCompatActivity {
             @Override
             public void onEvent(String s) {
                 tvSticky.setText(Config.appendMsg("without " + s));
+                throw new NullPointerException("");
             }
         });
 
