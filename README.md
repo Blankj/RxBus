@@ -176,7 +176,7 @@ public class RxBusManager {
 还有一些细节就自己看源码去了解吧，总共有用的代码不超过 300 行哈。
 
 
-## [Change log](https://raw.githubusercontent.com/Blankj/RxBus/master/CHANGELOG.md)
+## [Change log](https://github.com/Blankj/RxBus/blob/master/CHANGELOG.md)
 
 
 
