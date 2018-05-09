@@ -38,6 +38,14 @@
             android:onClick="postStickyWithTag"
             android:text="@string/post_sticky_with_tag" />
 
+        <Button
+            android:id="@+id/btn_use_manager"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="useManager"
+            android:text="@string/use_manager" />
+
         <TextView
             android:id="@+id/tv_sticky"
             style="@style/TextStyle"

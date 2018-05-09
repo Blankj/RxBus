@@ -101,6 +101,56 @@ implementation "com.blankj:rxbus:1.0"
   ```
 
 
+## Nice wrap
+
+如果用到事件总线的地方比较多，那么可以把事件总线的使用放到一个 Manager 中使用，比如我 Demo 中做的封装如下所示：
+
+```java
+public class RxBusManager {
+
+    private static final String MY_TAG = "MY_TAG";
+
+    public static void subscribeRxBusManagerActivity(final RxBusManagerActivity activity){
+        RxBus.getDefault().subscribe(activity, new RxBus.Callback<String>() {
+            @Override
+            public void onEvent(String s) {
+                activity.updateText("without " + s);
+            }
+        });
+
+        RxBus.getDefault().subscribe(activity, MY_TAG, new RxBus.Callback<String>() {
+            @Override
+            public void onEvent(String s) {
+                activity.updateText("with " + s);
+            }
+        });
+    }
+
+    public static void postToRxBusManagerActivity(final String event) {
+        RxBus.getDefault().post(event);
+    }
+
+    public static void postWithMyTagToRxBusManagerActivity(final String event) {
+        RxBus.getDefault().post(event, MY_TAG);
+    }
+
+    public static void postStickyToRxBusManagerActivity(final String event) {
+        RxBus.getDefault().postSticky(event);
+    }
+
+    public static void postStickyWithMyTagToRxBusManagerActivity(final String event) {
+        RxBus.getDefault().postSticky(event, MY_TAG);
+    }
+
+    public static void unregisterRxBusManagerActivity(final RxBusManagerActivity activity) {
+        RxBus.getDefault().unregister(activity);
+    }
+}
+```
+
+可以看出这是在 RxBusManagerActivity 中要使用 RxBus 的相关代码，这样可以更方便地管理应用中所有的事件总线，而不至于发了个事件都不清楚接收方在哪的尴尬。
+
+
 ## How it comes
 
 网上现有 RxBus 存有的问题：

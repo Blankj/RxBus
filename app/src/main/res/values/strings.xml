@@ -4,4 +4,5 @@
     <string name="post_with_tag">Post With Tag</string>
     <string name="post_sticky_without_tag">Post Sticky Without Tag</string>
     <string name="post_sticky_with_tag">Post Sticky With Tag</string>
+    <string name="use_manager">Use Manager</string>
 </resources>

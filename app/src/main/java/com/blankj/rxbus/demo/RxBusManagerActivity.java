@@ -10,12 +10,12 @@ import android.widget.TextView;
 import com.blankj.rxbus.RxBus;
 
 
-public class RxBusActivity extends AppCompatActivity {
+public class RxBusManagerActivity extends AppCompatActivity {
 
     private TextView tvSticky;
 
     public static void start(Context context) {
-        Intent starter = new Intent(context, RxBusActivity.class);
+        Intent starter = new Intent(context, RxBusManagerActivity.class);
         context.startActivity(starter);
     }
 
@@ -23,55 +23,42 @@ public class RxBusActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.btn_use_manager).setVisibility(View.GONE);
 
         tvSticky = findViewById(R.id.tv_sticky);
 
-        RxBus.getDefault().subscribe(this, new RxBus.Callback<String>() {
-            @Override
-            public void onEvent(String s) {
-                tvSticky.setText(Config.appendMsg("without " + s));
-                throw new NullPointerException("");
-            }
-        });
+        RxBusManager.subscribeRxBusManagerActivity(this);
+    }
 
-        RxBus.getDefault().subscribe(this, "my tag", new RxBus.Callback<String>() {
-            @Override
-            public void onEvent(String s) {
-                tvSticky.setText(Config.appendMsg("with " + s));
-            }
-        });
+    public void updateText(final String s) {
+        tvSticky.setText(Config.appendMsg(s));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RxBus.getDefault().unregister(this);
+        RxBusManager.unregisterRxBusManagerActivity(this);
     }
 
     public void postWithoutTag(View view) {
         Config.restoreMsg();
-        RxBus.getDefault().post("tag");
+        RxBusManager.postToRxBusManagerActivity("tag");
     }
 
     public void postWithTag(View view) {
         Config.restoreMsg();
-        RxBus.getDefault().post("tag", "my tag");
+        RxBusManager.postWithMyTagToRxBusManagerActivity("tag");
     }
 
     public void postStickyWithoutTag(View view) {
         Config.restoreMsg();
-        RxBus.getDefault().postSticky("tag");
+        RxBusManager.postStickyToRxBusManagerActivity("tag");
         StickyTestActivity.start(this);
     }
 
     public void postStickyWithTag(View view) {
         Config.restoreMsg();
-        RxBus.getDefault().postSticky("tag", "my tag");
+        RxBusManager.postStickyWithMyTagToRxBusManagerActivity("tag");
         StickyTestActivity.start(this);
-    }
-
-    public void useManager(View view) {
-        RxBusManagerActivity.start(this);
-        finish();
     }
 }
