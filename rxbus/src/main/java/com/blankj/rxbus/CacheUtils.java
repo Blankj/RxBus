@@ -20,7 +20,7 @@ final class CacheUtils {
 
     private final Map<Class, List<TagMessage>> stickyEventsMap = new ConcurrentHashMap<>();
 
-    private final Map<Object, List<Disposable>> disposablesMap = new HashMap<>();
+    private final Map<Object, List<Disposable>> disposablesMap = new ConcurrentHashMap<>();
 
     private CacheUtils() {
 
@@ -30,7 +30,7 @@ final class CacheUtils {
         return Holder.CACHE_UTILS;
     }
 
-    void addStickyEvent(final TagMessage stickyEvent) {
+    synchronized void addStickyEvent(final TagMessage stickyEvent) {
         Class<?> eventType = stickyEvent.event.getClass();
         synchronized (stickyEventsMap) {
             List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
@@ -68,26 +68,30 @@ final class CacheUtils {
     }
 
     void addDisposable(Object subscriber, Disposable disposable) {
-        List<Disposable> list = disposablesMap.get(subscriber);
-        if (list == null) {
-            list = new ArrayList<>();
-            list.add(disposable);
-            disposablesMap.put(subscriber, list);
-        } else {
-            list.add(disposable);
+        synchronized(disposablesMap) {
+            List<Disposable> list = disposablesMap.get(subscriber);
+            if (list == null) {
+                list = new ArrayList<>();
+                list.add(disposable);
+                disposablesMap.put(subscriber, list);
+            } else {
+                list.add(disposable);
+            }
         }
     }
 
     void removeDisposables(final Object subscriber) {
-        List<Disposable> disposables = disposablesMap.get(subscriber);
-        if (disposables == null) return;
-        for (Disposable disposable : disposables) {
-            if (disposable != null && !disposable.isDisposed()) {
-                disposable.dispose();
+        synchronized(disposablesMap) {
+            List<Disposable> disposables = disposablesMap.get(subscriber);
+            if (disposables == null) return;
+            for (Disposable disposable : disposables) {
+                if (disposable != null && !disposable.isDisposed()) {
+                    disposable.dispose();
+                }
             }
+            disposables.clear();
+            disposablesMap.remove(subscriber);
         }
-        disposables.clear();
-        disposablesMap.remove(subscriber);
     }
 
     private static class Holder {
