@@ -49,7 +49,7 @@ final class CacheUtils {
         }
     }
 
-    TagMessage removeStickyEvent(final Class eventType, final String tag) {
+    TagMessage findStickyEvent(final Class eventType, final String tag) {
         synchronized (stickyEventsMap) {
             List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
             if (stickyEvents == null) return null;
@@ -58,11 +58,10 @@ final class CacheUtils {
             for (int i = size - 1; i >= 0; --i) {
                 TagMessage stickyEvent = stickyEvents.get(i);
                 if (stickyEvent.isSameType(eventType, tag)) {
-                    res = stickyEvents.remove(i);
+                    res = stickyEvents.get(i);
                     break;
                 }
             }
-            if (stickyEvents.size() == 0) stickyEventsMap.remove(eventType);
             return res;
         }
     }

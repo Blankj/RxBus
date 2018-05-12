@@ -28,5 +28,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation project(':rxbus')
-//    implementation "com.blankj:rxbus:1.0"
+//    implementation "com.blankj:rxbus:1.1"
 }

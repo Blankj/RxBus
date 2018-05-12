@@ -138,7 +138,7 @@ public final class RxBus {
         };
 
         if (isSticky) {
-            final TagMessage stickyEvent = CacheUtils.getInstance().removeStickyEvent(eventType, tag);
+            final TagMessage stickyEvent = CacheUtils.getInstance().findStickyEvent(eventType, tag);
             if (stickyEvent != null) {
                 Flowable<T> stickyFlowable = Flowable.create(new FlowableOnSubscribe<T>() {
                     @Override
