@@ -30,7 +30,7 @@ final class CacheUtils {
         return Holder.CACHE_UTILS;
     }
 
-    synchronized void addStickyEvent(final TagMessage stickyEvent) {
+    void addStickyEvent(final TagMessage stickyEvent) {
         Class<?> eventType = stickyEvent.event.getClass();
         synchronized (stickyEventsMap) {
             List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);

@@ -1,5 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
 
     repositories {
@@ -20,6 +19,17 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+
+        resolutionStrategy.eachDependency {
+            if (it.requested.group == 'com.android.support'
+                    && it.requested.name != 'multidex') {
+                it.useVersion support_version
+            }
+        }
     }
 }
 
