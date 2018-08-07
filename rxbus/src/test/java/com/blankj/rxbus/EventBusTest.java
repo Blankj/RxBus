@@ -23,7 +23,7 @@ public class EventBusTest {
     public void setUp() {
 
     }
-    
+
     @After
     public void tearDown() {
         EventBus.getDefault().unregister(this);
