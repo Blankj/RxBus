@@ -7,7 +7,7 @@
 
 Gradle:
 ```groovy
-implementation "com.blankj:rxbus:1.1"
+implementation "com.blankj:rxbus:1.2"
 ```
 
 

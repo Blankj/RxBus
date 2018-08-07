@@ -31,21 +31,19 @@ final class Utils {
     }
 
     /**
-     * 检查对象非空
+     * Require the objects are not null.
      *
-     * @param object  对象
-     * @param message 报错
-     * @param <T>     范型
-     * @return 非空对象
+     * @param objects The object.
+     * @throws NullPointerException if any object is null in objects
      */
-    public static <T> T requireNonNull(T object, String message) {
-        if (object == null) {
-            throw new NullPointerException(message);
+    public static void requireNonNull(final Object... objects) {
+        if (objects == null) throw new NullPointerException();
+        for (Object object : objects) {
+            if (object == null) throw new NullPointerException();
         }
-        return object;
     }
 
-    public static <T> Class<T> getClassFromCallback(final RxBus.Callback<T> callback) {
+    public static <T> Class<T> getTypeClassFromCallback(final RxBus.Callback<T> callback) {
         if (callback == null) return null;
         Type mySuperClass = callback.getClass().getGenericInterfaces()[0];
         Type type = ((ParameterizedType) mySuperClass).getActualTypeArguments()[0];
@@ -55,13 +53,40 @@ final class Utils {
         String className = type.toString();
         if (className.startsWith("class ")) {
             className = className.substring(6);
+        } else if (className.startsWith("interface ")) {
+            className = className.substring(10);
         }
         try {
+            //noinspection unchecked
             return (Class<T>) Class.forName(className);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
+    }
+
+    public static Class getClassFromObject(final Object obj) {
+        if (obj == null) return null;
+        Class objClass = obj.getClass();
+        Type[] genericInterfaces = objClass.getGenericInterfaces();
+        if (genericInterfaces.length == 1) {
+            Type type = genericInterfaces[0];
+            while (type instanceof ParameterizedType) {
+                type = ((ParameterizedType) type).getRawType();
+            }
+            String className = type.toString();
+            if (className.startsWith("class ")) {
+                className = className.substring(6);
+            } else if (className.startsWith("interface ")) {
+                className = className.substring(10);
+            }
+            try {
+                return Class.forName(className);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return objClass;
     }
 
     public static void logW(String msg) {

@@ -10,31 +10,25 @@ package com.blankj.rxbus;
  */
 final class TagMessage {
 
-    Object event;
-    String tag;
+    Object mEvent;
+    String mTag;
 
     TagMessage(Object event, String tag) {
-        this.event = event;
-        this.tag = tag;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj != null && obj instanceof TagMessage) {
-            TagMessage tagMessage = (TagMessage) obj;
-            return Utils.equals(tagMessage.event.getClass(), event.getClass())
-                    && Utils.equals(tagMessage.tag, tag);
-        }
-        return false;
+        mEvent = event;
+        mTag = tag;
     }
 
     boolean isSameType(final Class eventType, final String tag) {
-        return Utils.equals(event.getClass(), eventType)
-                && Utils.equals(this.tag, tag);
+        return Utils.equals(getEventType(), eventType)
+                && Utils.equals(this.mTag, tag);
+    }
+
+    Class getEventType() {
+        return Utils.getClassFromObject(mEvent);
     }
 
     @Override
     public String toString() {
-        return "event: " + event + ", tag: " + tag;
+        return "event: " + mEvent + ", tag: " + mTag;
     }
 }

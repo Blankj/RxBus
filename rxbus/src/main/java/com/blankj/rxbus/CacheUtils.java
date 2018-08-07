@@ -31,7 +31,7 @@ final class CacheUtils {
     }
 
     void addStickyEvent(final TagMessage stickyEvent) {
-        Class<?> eventType = stickyEvent.event.getClass();
+        Class eventType = stickyEvent.getEventType();
         synchronized (stickyEventsMap) {
             List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
             if (stickyEvents == null) {
@@ -67,7 +67,7 @@ final class CacheUtils {
     }
 
     void addDisposable(Object subscriber, Disposable disposable) {
-        synchronized(disposablesMap) {
+        synchronized (disposablesMap) {
             List<Disposable> list = disposablesMap.get(subscriber);
             if (list == null) {
                 list = new ArrayList<>();
@@ -80,7 +80,7 @@ final class CacheUtils {
     }
 
     void removeDisposables(final Object subscriber) {
-        synchronized(disposablesMap) {
+        synchronized (disposablesMap) {
             List<Disposable> disposables = disposablesMap.get(subscriber);
             if (disposables == null) return;
             for (Disposable disposable : disposables) {

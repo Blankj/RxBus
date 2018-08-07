@@ -22,10 +22,9 @@ public class RxBusManagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        findViewById(R.id.btn_use_manager).setVisibility(View.GONE);
+        setContentView(R.layout.activity_manager);
 
-        tvSticky = findViewById(R.id.tv_sticky);
+        tvSticky = findViewById(R.id.tv_about_manager);
 
         RxBusManager.subscribeRxBusManagerActivity(this);
     }

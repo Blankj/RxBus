@@ -40,6 +40,13 @@ public class RxBusActivity extends AppCompatActivity {
                 tvSticky.setText(Config.appendMsg("with " + s));
             }
         });
+
+        RxBus.getDefault().subscribe(this, new RxBus.Callback<TestCallback>() {
+            @Override
+            public void onEvent(TestCallback testCallback) {
+                tvSticky.setText(Config.appendMsg(testCallback.call()));
+            }
+        });
     }
 
     @Override
@@ -73,5 +80,18 @@ public class RxBusActivity extends AppCompatActivity {
     public void useManager(View view) {
         RxBusManagerActivity.start(this);
         finish();
+    }
+
+    public void testInterface(View view) {
+        Config.restoreMsg();
+        for (int i = 0; i < 100; i++) {
+            final int finalI = i;
+            RxBus.getDefault().post(new TestCallback() {
+                @Override
+                public String call() {
+                    return String.valueOf(finalI);
+                }
+            });
+        }
     }
 }

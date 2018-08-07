@@ -1,7 +1,5 @@
 package com.blankj.rxbus;
 
-import android.annotation.SuppressLint;
-
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
@@ -60,8 +58,7 @@ public final class RxBus {
     private void post(final Object event,
                       final String tag,
                       final boolean isSticky) {
-        Utils.requireNonNull(event, "event is null");
-        Utils.requireNonNull(tag, "tag is null");
+        Utils.requireNonNull(event, tag);
 
         TagMessage msgEvent = new TagMessage(event, tag);
         if (isSticky) {
@@ -76,15 +73,15 @@ public final class RxBus {
     }
 
     public <T> void subscribe(final Object subscriber,
-                              final Scheduler scheduler,
-                              final Callback<T> callback) {
-        subscribe(subscriber, "", false, scheduler, callback);
-    }
-
-    public <T> void subscribe(final Object subscriber,
                               final String tag,
                               final Callback<T> callback) {
         subscribe(subscriber, tag, false, null, callback);
+    }
+
+    public <T> void subscribe(final Object subscriber,
+                              final Scheduler scheduler,
+                              final Callback<T> callback) {
+        subscribe(subscriber, "", false, scheduler, callback);
     }
 
     public <T> void subscribe(final Object subscriber,
@@ -100,15 +97,15 @@ public final class RxBus {
     }
 
     public <T> void subscribeSticky(final Object subscriber,
-                                    final Scheduler scheduler,
-                                    final Callback<T> callback) {
-        subscribe(subscriber, "", true, scheduler, callback);
-    }
-
-    public <T> void subscribeSticky(final Object subscriber,
                                     final String tag,
                                     final Callback<T> callback) {
         subscribe(subscriber, tag, true, null, callback);
+    }
+
+    public <T> void subscribeSticky(final Object subscriber,
+                                    final Scheduler scheduler,
+                                    final Callback<T> callback) {
+        subscribe(subscriber, "", true, scheduler, callback);
     }
 
     public <T> void subscribeSticky(final Object subscriber,
@@ -118,17 +115,14 @@ public final class RxBus {
         subscribe(subscriber, tag, true, scheduler, callback);
     }
 
-    @SuppressLint("CheckResult")
     private <T> void subscribe(final Object subscriber,
                                final String tag,
                                final boolean isSticky,
                                final Scheduler scheduler,
                                final Callback<T> callback) {
-        Utils.requireNonNull(subscriber, "subscriber is null");
-        Utils.requireNonNull(tag, "tag is null");
-        Utils.requireNonNull(callback, "callback is null");
+        Utils.requireNonNull(subscriber, tag, callback);
 
-        final Class<T> eventType = Utils.getClassFromCallback(callback);
+        final Class<T> typeClass = Utils.getTypeClassFromCallback(callback);
 
         final Consumer<T> onNext = new Consumer<T>() {
             @Override
@@ -138,16 +132,16 @@ public final class RxBus {
         };
 
         if (isSticky) {
-            final TagMessage stickyEvent = CacheUtils.getInstance().findStickyEvent(eventType, tag);
+            final TagMessage stickyEvent = CacheUtils.getInstance().findStickyEvent(typeClass, tag);
             if (stickyEvent != null) {
                 Flowable<T> stickyFlowable = Flowable.create(new FlowableOnSubscribe<T>() {
                     @Override
                     public void subscribe(FlowableEmitter<T> emitter) {
-                        emitter.onNext(eventType.cast(stickyEvent.event));
+                        emitter.onNext(typeClass.cast(stickyEvent.mEvent));
                     }
                 }, BackpressureStrategy.LATEST);
                 if (scheduler != null) {
-                    stickyFlowable.observeOn(scheduler);
+                    stickyFlowable = stickyFlowable.observeOn(scheduler);
                 }
                 Disposable stickyDisposable = FlowableUtils.subscribe(stickyFlowable, onNext, mOnError);
                 CacheUtils.getInstance().addDisposable(subscriber, stickyDisposable);
@@ -155,7 +149,9 @@ public final class RxBus {
                 Utils.logW("sticky event is empty.");
             }
         }
-        Disposable disposable = FlowableUtils.subscribe(toFlowable(eventType, tag, scheduler), onNext, mOnError);
+        Disposable disposable = FlowableUtils.subscribe(
+                toFlowable(typeClass, tag, scheduler), onNext, mOnError
+        );
         CacheUtils.getInstance().addDisposable(subscriber, disposable);
     }
 
@@ -172,7 +168,7 @@ public final class RxBus {
                 .map(new Function<TagMessage, Object>() {
                     @Override
                     public Object apply(TagMessage tagMessage) {
-                        return tagMessage.event;
+                        return tagMessage.mEvent;
                     }
                 })
                 .cast(eventType);

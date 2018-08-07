@@ -6,8 +6,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -43,19 +43,16 @@ ext {
     min_sdk_version = 14
     target_sdk_version = 27
 
-    version_code = 1_001
-    version_name = '1.1'// E.g 1.9 == 1,009
+    version_code = 1_002
+    version_name = '1.2'// E.g 1.9 == 1,009
 
     // App dependencies
     support_version = '27.1.1'
 
     rxandroid_version = '2.0.2'
-    rxjava_version = '2.1.13'
+    rxjava_version = '2.2.0'
 
-    alog_version = '1.8.0'
-
-    leakcanary_version = '1.5.4'
+    alog_version = '1.9.0'
 
     junit_version = '4.12'
-    robolectric_version = '3.1.2'
 }
