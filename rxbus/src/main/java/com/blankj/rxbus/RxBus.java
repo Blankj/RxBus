@@ -17,7 +17,7 @@ import io.reactivex.processors.PublishProcessor;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2017/12/14
- *     desc  : 1.2
+ *     desc  : 1.3
  * </pre>
  */
 public final class RxBus {
