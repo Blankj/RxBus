@@ -34,39 +34,29 @@ public class RxBusTest {
 
     @Test
     public void test() {
-//        FlowableProcessor<Object> processor = PublishProcessor.create().toSerialized();
-//
-//        processor.ofType(String.class)
-//                .subscribe(new Consumer<String>() {
-//                    @Override
-//                    public void accept(String s) throws Exception {
-//                        System.out.println(s + "2");
-//                    }
-//                });
-//        processor.ofType(String.class)
-//                .subscribe(new Consumer<String>() {
-//                    @Override
-//                    public void accept(String s) throws Exception {
-//                        System.out.println(s + "1");
-//                    }
-//                });
-//
-//
-//        processor.onNext("2");
 
-
-        RxBus.getDefault().postSticky("haha");
-        RxBus.getDefault().postSticky("haha");
-
-        RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<String>() {
+        RxBus.getDefault().postSticky(new Call() {
             @Override
-            public void onEvent(String s) {
-                System.out.println(s);
+            public void call() {
+                System.out.println("call");
             }
         });
 
-        RxBus.getDefault().postSticky("haha");
-        RxBus.getDefault().post("haha");
+        RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<Call>() {
+            @Override
+            public void onEvent(Call s) {
+                s.call();
+            }
+        });
+
+        RxBus.getDefault().postSticky(10086);
+
+        RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<Integer>() {
+            @Override
+            public void onEvent(Integer i) {
+                System.out.println(i);
+            }
+        });
     }
 
     @After

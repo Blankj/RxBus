@@ -32,12 +32,15 @@ public class EventBusTest {
     @Test
     public void test() {
         EventBus.getDefault().postSticky("haha");
-        EventBus.getDefault().postSticky("haha");
+        EventBus.getDefault().postSticky(10086);
 
         EventBus.getDefault().register(this);
 
         EventBus.getDefault().postSticky("haha");
+        EventBus.getDefault().postSticky(10086);
+
         EventBus.getDefault().post("haha");
+        EventBus.getDefault().post(10086);
     }
 
 
@@ -54,6 +57,11 @@ public class EventBusTest {
     @Subscribe(threadMode = ThreadMode.MAIN, priority = 2, sticky = true)
     public void onMessageEvent2(String event) {
         System.out.println(event + "2");
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, priority = 3, sticky = true)
+    public void onIntEvent(Integer event) {
+        System.out.println(event);
     }
 
 

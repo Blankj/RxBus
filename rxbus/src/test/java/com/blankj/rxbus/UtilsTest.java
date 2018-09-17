@@ -50,36 +50,35 @@ public class UtilsTest {
         System.out.println(interfaceName1);
     }
 
-//    class java.lang.String
-//    class java.util.ArrayList
-//    interface com.blankj.rxbus.RxBus$Callback
-//    interface com.blankj.rxbus.RxBus$Callback
-
-
     @Test
     public void getTypeNameFromObject() {
-        System.out.println(Utils.getClassFromObject("test"));
+//        System.out.println(Utils.getClassFromObject("test"));
+//
+//        System.out.println(Utils.getClassFromObject(new ArrayList<String>()));
+//
+//        RxBus.Callback callback0 = new RxBus.Callback<Integer>() {
+//            @Override
+//            public void onEvent(Integer o) {
+//
+//            }
+//        };
+//
+//        System.out.println(callback0.getClass());
+//        System.out.println(Utils.getClassFromObject(callback0));
+//
+//
+//        System.out.println(Utils.getTypeClassFromCallback(callback0));
+        System.out.println(Utils.getClassFromObject(new A()));
+        System.out.println(Utils.getClassFromObject(new B() {
+        }));
+        System.out.println(Utils.getClassFromObject(1));
+    }
 
-        System.out.println(Utils.getClassFromObject(new ArrayList<String>()));
+    class A {
 
-        RxBus.Callback callback0 = new RxBus.Callback() {
-            @Override
-            public void onEvent(Object o) {
+    }
 
-            }
-        };
+    interface B {
 
-        System.out.println(callback0.getClass());
-        System.out.println(Utils.getClassFromObject(callback0));
-
-        RxBus.Callback<RxBus.Callback<String>> callback1 = new RxBus.Callback<RxBus.Callback<String>>() {
-            @Override
-            public void onEvent(RxBus.Callback<String> strings) {
-
-            }
-        };
-
-        System.out.println(callback1.getClass());
-        System.out.println(Utils.getClassFromObject(callback1));
     }
 }

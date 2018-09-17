@@ -68,22 +68,24 @@ final class Utils {
     public static Class getClassFromObject(final Object obj) {
         if (obj == null) return null;
         Class objClass = obj.getClass();
-        Type[] genericInterfaces = objClass.getGenericInterfaces();
-        if (genericInterfaces.length == 1) {
-            Type type = genericInterfaces[0];
-            while (type instanceof ParameterizedType) {
-                type = ((ParameterizedType) type).getRawType();
-            }
-            String className = type.toString();
-            if (className.startsWith("class ")) {
-                className = className.substring(6);
-            } else if (className.startsWith("interface ")) {
-                className = className.substring(10);
-            }
-            try {
-                return Class.forName(className);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+        if (objClass.isAnonymousClass()) {
+            Type[] genericInterfaces = objClass.getGenericInterfaces();
+            if (genericInterfaces.length == 1) {
+                Type type = genericInterfaces[0];
+                while (type instanceof ParameterizedType) {
+                    type = ((ParameterizedType) type).getRawType();
+                }
+                String className = type.toString();
+                if (className.startsWith("class ")) {
+                    className = className.substring(6);
+                } else if (className.startsWith("interface ")) {
+                    className = className.substring(10);
+                }
+                try {
+                    return Class.forName(className);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return objClass;

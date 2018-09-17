@@ -23,5 +23,5 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation project(':rxbus')
     implementation "com.blankj:alog:$alog_version"
-//    implementation 'com.blankj:rxbus:1.2'
+//    implementation 'com.blankj:rxbus:1.3'
 }

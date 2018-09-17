@@ -27,4 +27,3 @@ dependencies {
 }
 
 apply from: "../bintrayUpload.gradle"
-//gradle bintrayUpload
