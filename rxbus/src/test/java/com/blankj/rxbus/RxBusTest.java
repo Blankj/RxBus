@@ -35,17 +35,13 @@ public class RxBusTest {
     @Test
     public void test() {
 
-        RxBus.getDefault().postSticky(new Call() {
-            @Override
-            public void call() {
-                System.out.println("call");
-            }
-        });
+        RxBus.getDefault().postSticky((Call<Integer>) integer -> System.out.println(integer));
 
-        RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<Call>() {
+        RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<Call<Integer>>() {
+
             @Override
-            public void onEvent(Call s) {
-                s.call();
+            public void onEvent(Call<Integer> integerCall) {
+                integerCall.call(10086);
             }
         });
 
@@ -53,8 +49,8 @@ public class RxBusTest {
 
         RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<Integer>() {
             @Override
-            public void onEvent(Integer i) {
-                System.out.println(i);
+            public void onEvent(Integer integer) {
+                System.out.println(integer);
             }
         });
     }

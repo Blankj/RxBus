@@ -17,7 +17,7 @@ import io.reactivex.processors.PublishProcessor;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2017/12/14
- *     desc  : 1.3
+ *     desc  : 1.4
  * </pre>
  */
 public final class RxBus {
@@ -122,7 +122,7 @@ public final class RxBus {
                                final Callback<T> callback) {
         Utils.requireNonNull(subscriber, tag, callback);
 
-        final Class<T> typeClass = Utils.getTypeClassFromCallback(callback);
+        final Class<T> typeClass = Utils.getTypeClassFromParadigm(callback);
 
         final Consumer<T> onNext = new Consumer<T>() {
             @Override
@@ -186,7 +186,7 @@ public final class RxBus {
         private static final RxBus BUS = new RxBus();
     }
 
-    public interface Callback<T> {
-        void onEvent(T t);
+    public abstract static class Callback<T> {
+        public abstract void onEvent(T t);
     }
 }

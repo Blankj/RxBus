@@ -1,5 +1,6 @@
 package com.blankj.rxbus;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,69 +17,65 @@ public class UtilsTest {
 
     @Test
     public void getClassFromCallback() {
-        Class<String> className0 = Utils.getTypeClassFromCallback(new RxBus.Callback<String>() {
-            @Override
-            public void onEvent(String strings) {
+//        Class<String> className0 = Utils.getTypeClassFromParadigm(new RxBus.Callback<String>() {
+//            @Override
+//            public void onEvent(String strings) {
+//
+//            }
+//        });
+//        System.out.println(className0);
+//
+//        Class<ArrayList<String>> className1 = Utils.getTypeClassFromParadigm(new RxBus.Callback<ArrayList<String>>() {
+//            @Override
+//            public void onEvent(ArrayList<String> strings) {
+//
+//            }
+//        });
+//        System.out.println(className1);
 
-            }
-        });
-        System.out.println(className0);
 
-        Class<ArrayList<String>> className1 = Utils.getTypeClassFromCallback(new RxBus.Callback<ArrayList<String>>() {
-            @Override
-            public void onEvent(ArrayList<String> strings) {
-
-            }
-        });
-        System.out.println(className1);
-
-
-        Class<RxBus.Callback> interfaceName0 = Utils.getTypeClassFromCallback(new RxBus.Callback<RxBus.Callback>() {
+        Class<RxBus.Callback> interfaceName0 = Utils.getTypeClassFromParadigm(new RxBus.Callback<RxBus.Callback>() {
             @Override
             public void onEvent(RxBus.Callback strings) {
 
             }
         });
         System.out.println(interfaceName0);
-
-        Class<RxBus.Callback<String>> interfaceName1 = Utils.getTypeClassFromCallback(new RxBus.Callback<RxBus.Callback<String>>() {
-            @Override
-            public void onEvent(RxBus.Callback<String> strings) {
-
-            }
-        });
-        System.out.println(interfaceName1);
+//
+//        Class<RxBus.Callback<String>> interfaceName1 = Utils.getTypeClassFromParadigm(new RxBus.Callback<RxBus.Callback<String>>() {
+//            @Override
+//            public void onEvent(RxBus.Callback<String> strings) {
+//
+//            }
+//        });
+//        System.out.println(interfaceName1);
     }
 
     @Test
     public void getTypeNameFromObject() {
-//        System.out.println(Utils.getClassFromObject("test"));
-//
-//        System.out.println(Utils.getClassFromObject(new ArrayList<String>()));
-//
-//        RxBus.Callback callback0 = new RxBus.Callback<Integer>() {
-//            @Override
-//            public void onEvent(Integer o) {
-//
-//            }
-//        };
-//
-//        System.out.println(callback0.getClass());
-//        System.out.println(Utils.getClassFromObject(callback0));
-//
-//
-//        System.out.println(Utils.getTypeClassFromCallback(callback0));
-        System.out.println(Utils.getClassFromObject(new A()));
-        System.out.println(Utils.getClassFromObject(new B() {
-        }));
-        System.out.println(Utils.getClassFromObject(1));
-    }
+        Assert.assertEquals(String.class, Utils.getClassFromObject("test"));
+        Assert.assertEquals(ArrayList.class, Utils.getClassFromObject(new ArrayList<String>()));
 
-    class A {
+        RxBus.Callback<Integer> callback = new RxBus.Callback<Integer>() {
+            @Override
+            public void onEvent(Integer o) {
 
-    }
+            }
+        };
 
-    interface B {
+        Assert.assertEquals(RxBus.Callback.class, Utils.getClassFromObject(callback));
+        Assert.assertEquals(Integer.class, Utils.getTypeClassFromParadigm(callback));
 
+
+        Call<Integer> call = new Call<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                System.out.println(integer);
+            }
+        };
+
+        Assert.assertEquals(Call.class, Utils.getClassFromObject(call));
+
+        Assert.assertEquals(Integer.class, Utils.getClassFromObject(1));
     }
 }

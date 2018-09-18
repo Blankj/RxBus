@@ -8,6 +8,6 @@ package com.blankj.rxbus;
  *     desc  :
  * </pre>
  */
-public interface Call {
-    void call();
+public interface Call<T> {
+    void call(T t);
 }

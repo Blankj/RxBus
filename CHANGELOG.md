@@ -1,3 +1,7 @@
+## v1.4(2018-09-18)
+RxBus#Callback 接口改为抽象类，避免 Java8 中使用 lambda 导致获取范型异常 
+
+
 ## v1.3(2018-09-17)
 修复 Utils#getClassFromObject 导致获取事件类型不对
 
