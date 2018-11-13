@@ -1,21 +1,8 @@
 package com.blankj.rxbus;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Flowable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.processors.FlowableProcessor;
-import io.reactivex.processors.PublishProcessor;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * <pre>
@@ -35,7 +22,7 @@ public class RxBusTest {
     @Test
     public void test() {
 
-        RxBus.getDefault().postSticky((Call<Integer>) integer -> System.out.println(integer));
+//        RxBus.getDefault().postSticky((Call<Integer>) integer -> System.out.println(integer));
 
         RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<Call<Integer>>() {
 

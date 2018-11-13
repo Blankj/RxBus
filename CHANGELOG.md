@@ -1,5 +1,9 @@
+## v1.5(2018-11-13)
+去除编译用 Java8
+
+
 ## v1.4(2018-09-18)
-RxBus#Callback 接口改为抽象类，避免 Java8 中使用 lambda 导致获取范型异常 
+RxBus#Callback 接口改为抽象类，避免 Java8 中使用 lambda 导致获取范型异常
 
 
 ## v1.3(2018-09-17)
