@@ -36,11 +36,15 @@ public class EventBusTest {
 
         EventBus.getDefault().register(this);
 
-        EventBus.getDefault().postSticky("haha");
-        EventBus.getDefault().postSticky(10086);
-
         EventBus.getDefault().post("haha");
         EventBus.getDefault().post(10086);
+
+        EventBus.getDefault().unregister(this);
+        System.out.println("-----");
+        EventBus.getDefault().register(this);
+        EventBus.getDefault().unregister(this);
+        System.out.println("-----");
+        EventBus.getDefault().register(this);
     }
 
 
@@ -63,6 +67,4 @@ public class EventBusTest {
     public void onIntEvent(Integer event) {
         System.out.println(event);
     }
-
-
 }

@@ -62,9 +62,20 @@ public final class RxBus {
 
         TagMessage msgEvent = new TagMessage(event, tag);
         if (isSticky) {
-            CacheUtils.getInstance().addStickyEvent(msgEvent);
+            CacheUtils.getInstance().addStickyEvent(event, tag);
         }
         mBus.onNext(msgEvent);
+    }
+
+    public void removeSticky(final Object event) {
+        removeSticky(event, "");
+    }
+
+    public void removeSticky(final Object event,
+                             final String tag) {
+        Utils.requireNonNull(event, tag);
+
+        CacheUtils.getInstance().removeStickyEvent(event, tag);
     }
 
     public <T> void subscribe(final Object subscriber,

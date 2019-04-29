@@ -1,7 +1,6 @@
 package com.blankj.rxbus;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,22 +29,40 @@ final class CacheUtils {
         return Holder.CACHE_UTILS;
     }
 
-    void addStickyEvent(final TagMessage stickyEvent) {
-        Class eventType = stickyEvent.getEventType();
+    void addStickyEvent(final Object event, final String tag) {
+        Class eventType = Utils.getClassFromObject(event);
         synchronized (stickyEventsMap) {
             List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
             if (stickyEvents == null) {
                 stickyEvents = new ArrayList<>();
-                stickyEvents.add(stickyEvent);
+                stickyEvents.add(new TagMessage(event, tag));
                 stickyEventsMap.put(eventType, stickyEvents);
             } else {
-                int indexOf = stickyEvents.indexOf(stickyEvent);
-                if (indexOf == -1) {// 不存在直接插入
-                    stickyEvents.add(stickyEvent);
-                } else {// 存在则覆盖
-                    stickyEvents.set(indexOf, stickyEvent);
+                for (int i = stickyEvents.size() - 1; i >= 0; --i) {
+                    TagMessage tmp = stickyEvents.get(i);
+                    if (tmp.isSameType(eventType, tag)) {
+                        Utils.logW("The sticky event already added.");
+                        return;
+                    }
+                }
+                stickyEvents.add(new TagMessage(event, tag));
+            }
+        }
+    }
+
+    void removeStickyEvent(final Object event, final String tag) {
+        Class eventType = Utils.getClassFromObject(event);
+        synchronized (stickyEventsMap) {
+            List<TagMessage> stickyEvents = stickyEventsMap.get(eventType);
+            if (stickyEvents == null) return;
+            for (int i = stickyEvents.size() - 1; i >= 0; --i) {
+                TagMessage stickyEvent = stickyEvents.get(i);
+                if (stickyEvent.isSameType(eventType, tag)) {
+                    stickyEvents.remove(i);
+                    break;
                 }
             }
+            if (stickyEvents.size() == 0) stickyEventsMap.remove(eventType);
         }
     }
 

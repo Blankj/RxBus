@@ -7,7 +7,7 @@
 
 Gradle:
 ```groovy
-implementation "com.blankj:rxbus:1.5"
+implementation "com.blankj:rxbus:1.6"
 ```
 
 
@@ -65,6 +65,10 @@ implementation "com.blankj:rxbus:1.5"
 
   // 发送带 tag 为 "my tag" 的 String 类型的粘性事件
   RxBus.getDefault().postSticky("with tag", "my tag");
+
+  // 在需要移除粘性事件的地方移除它
+  RxBus.getDefault().removeSticky("without tag");
+  RxBus.getDefault().removeSticky("with tag", "my tag");
   ```
 2. 注册事件
   ```java

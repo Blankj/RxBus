@@ -22,7 +22,12 @@ public class RxBusTest {
     @Test
     public void test() {
 
-//        RxBus.getDefault().postSticky((Call<Integer>) integer -> System.out.println(integer));
+        RxBus.getDefault().postSticky(new Call<Integer>() {
+            @Override
+            public void call(Integer integer) {
+                System.out.println(integer);
+            }
+        });
 
         RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<Call<Integer>>() {
 
@@ -33,6 +38,7 @@ public class RxBusTest {
         });
 
         RxBus.getDefault().postSticky(10086);
+        RxBus.getDefault().removeSticky(10086);
 
         RxBus.getDefault().subscribeSticky(this, new RxBus.Callback<Integer>() {
             @Override
