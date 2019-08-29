@@ -3,6 +3,10 @@ package com.blankj.rxbus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowLog;
 
 /**
  * <pre>
@@ -12,11 +16,13 @@ import org.junit.Test;
  *     desc  :
  * </pre>
  */
+@RunWith(RobolectricTestRunner.class)
+@Config(manifest = Config.NONE, shadows = {ShadowLog.class})
 public class RxBusTest {
 
     @Before
     public void setUp() {
-
+        ShadowLog.stream = System.out;
     }
 
     @Test
