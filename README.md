@@ -193,7 +193,7 @@ public class RxBusManager {
 
 [logo]: https://raw.githubusercontent.com/Blankj/RxBus/master/art/logo.png
 
-[rbsvg]: https://img.shields.io/badge/RxBus-v1.5-brightgreen.svg
+[rbsvg]: https://img.shields.io/badge/RxBus-v1.6-brightgreen.svg
 [rb]: https://github.com/Blankj/RxBus
 
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg
